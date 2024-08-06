@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  backend:
+    environment:
+      - DJANGO_DEBUG=true
+      - DJANGO_SETTINGS_MODULE=config.settings
+  frontend:
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000/api
