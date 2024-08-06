@@ -1,12 +1,22 @@
-# Лабораторная работа №3
+# 🪣 Bucket Sort Web Application
 
-Студент И. С. Рябченко, группа 425
+![Screenshot 1](https://i.imgur.com/DCmPttO.png)
 
-Разработка веб-приложения для работы с программой Блочной сортировки, реализованной в рамках 2 лабораторной с интеграцией базы данных.
+A full-stack web application that implements the **Bucket Sort algorithm** using **Django** and **React**. This project showcases the integration of a powerful backend built with **Django** and **Django Rest Framework (DRF)** and a dynamic frontend created with **React**.
 
-http://bucket-sort.ru/ - веб-приложение развернутое на сервере.
+## Features
 
-## Технологический стек
+- **Bucket Sort Algorithm**: Efficient sorting of large arrays using the Bucket Sort algorithm;
+- **Array Input Methods**:
+    - **Manual Input**: Users can manually enter arrays through a user-friendly interface.
+    - **Random Generation**: Users can generate random arrays of specified sizes for sorting.
+    - **File Upload**: Users can upload files containing arrays to be sorted.
+- **Array Management**:
+    - **View Arrays**: Users can view all arrays stored in the database.
+    - **Edit Arrays**: Users can edit individual arrays directly from the application.
+- **Interactive UI**: A clean and responsive user interface built with React and Bootstrap for a seamless user experience.
+
+## Tech Stack
 
 - Django
 - DRF
@@ -14,77 +24,86 @@ http://bucket-sort.ru/ - веб-приложение развернутое на
 - Bootstrap
 - Docker
 - PostgreSQL
+- SQLite
 - Nginx
 - pytest-django
 
-## Локальный запуск
-**Docker:**
+## How to Launch
+### Using Docker:
+
+To quickly set up and launch the application using **Docker**, run:
 
 `$ docker-compose -f docker-compose.dev.yml up --build -d`
 
-**Django:**
+This will build and start necessary containers for both the **Django** backend and **React** frontend.
 
-1. Создать виртуальное окружение:
+### Manual Setup
+
+If you prefer to set up the application manually without **Docker**, follow the steps below for both the **Django** backend and the **React** frontend.
+
+#### Django Backend:
+
+1. Create a virtual environment:
 
 `$ python3 -m venv .venv`
 
-2. Активировать виртуальное окружение:
+2. Activate the virtual environment:
 
 `$ source .venv/bin/activate`
 
-3. Установить зависимости:
+3. Install dependencies:
 
 `$ pip install -r requirements.txt`
 
-4. Применить миграции:
+4. Apply migrations:
 
 `$ python manage.py migrate`
 
-5. Запустить локальный сервер:
+5. Start the Django development server:
 
 `$ python manage.py runserver`
 
-API будет доступен на **localhost:8000/api/**.
+The API will be available at **localhost:8000/api/**.
 
-**React:**
+#### React:
 
-1. Установить зависимости:
+1. Navigate to the React project directory and install dependencies:
 
 `$ yarn install`
 
-2. Запустить локальный сервер:
+2. Start the React development server:
 
 `$ yarn start`
 
-Приложение будет доступно на **localhost:3000**.
+The application will be available at **localhost:3000**.
 
-## Тесты
+## Tests
 
-По условию задачи были реализованы программные тесты работы с базой данных:
+The task includes implementation of tests to work with the database:
 
-- Добавление 100, 1000, 10000 случайных массивов;
-- Выгрузка и сортировка 100, 1000, 10000 случайных массивов;
-- Удаление 100, 1000, 10000 случайных массивов;
+- Adding 100, 1000, 10000 random arrays;
+- Fetching and sorting 100, 1000, 10000 random arrays;
+- Deleting 100, 1000, 10000 random arrays;
 
-Для написания тестов использовался **pytest-django**.
+**pytest-django** was used for writing the tests.
 
-**Запуск тестов (внутри директории с Django-проектом):**
+**Running Tests (inside the Django project directory):**
 
 `$ pytest`
 
-**Пример результатов:**
+**Sample Test Results:**
 
-![Результат запуска тестов](https://i.imgur.com/aa6yzJT.png)
+![Sample Test Results](https://i.imgur.com/aa6yzJT.png)
 
-## Переменные окружения
+## Environment Variables
 
-Переменные окружения представлены внутри **docker-compose**, для локального запуска создайте файл **.env** указав следующие значения:
+Environment variables are specified inside the **docker-compose** file. For non-Docker local development or when customizing the environment, create a **.env** file with the following values:
 
 ```
 DJANGO_SECRET_KEY=secret_key
 REACT_APP_API_URL=domain.com
 
-[POSTGRESQL // НЕОБЯЗАТЕЛЬНО]
+[POSTGRESQL // OPTIONAL]
 DJANGO_DB_HOST=postgres
 DJANGO_DB_NAME=postgres
 DJANGO_DB_USER=postgres
@@ -92,8 +111,8 @@ DJANGO_DB_PASSWORD=postgres
 DJANGO_DB_PORT=5432
 ```
 
-Обратите внимание, что для локального запуска по умолчанию используется **SQLite**, для запуска с **PostgreSQL**, укажите необходимые переменные внутри **.env**.
+Note that **SQLite** is used by default for non-Docker local development. To use **PostgreSQL**, specify the necessary variables in the .env file.
 
-Сгенерировать **DJANGO_SECRET_KEY**:
+Generate **DJANGO_SECRET_KEY**:
 
 `$ openssl rand -hex32`
